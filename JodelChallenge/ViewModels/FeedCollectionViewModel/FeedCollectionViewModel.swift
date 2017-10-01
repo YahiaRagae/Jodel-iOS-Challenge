@@ -10,10 +10,13 @@ import Foundation
 import RxSwift
 class FeedCollectionViewModel: NSObject{
     var photos:Variable<[PhotoItem]> =  Variable<[PhotoItem]>([])
+    private var pageIndex:NSNumber = 0 ;
     
     // MARK:- Actions
     func loadData(){
-        FlickrApi.fetchPhotos { (newPhotos, error) in
+        pageIndex = NSNumber(value: pageIndex.intValue + 1)
+        
+        FlickrApi.fetchPhotos(withPageIndex: pageIndex){(newPhotos, error) in
             
             if newPhotos != nil {
                 DispatchQueue.main.async(execute: {

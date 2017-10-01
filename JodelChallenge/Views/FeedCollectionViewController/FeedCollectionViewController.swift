@@ -17,8 +17,9 @@ class FeedCollectionViewController:UICollectionViewController{
             DispatchQueue.main.async(execute: {
                 self.collectionView?.reloadData()
             })
-            
-            self.photos = photos!   
+            if photos != nil {
+                self.photos = photos!
+            }            
         }
     }
     // MARK:- Class Methods

@@ -9,18 +9,16 @@
 import Foundation
 
 class FeedCollectionViewController:UICollectionViewController{
-    var photos:[Any] = [Any]()
+    var photos:[PhotoItem] = [PhotoItem]()
     // MARK:- Life Cycle Methods
 
     override func viewDidLoad() {
         FlickrApi.fetchPhotos { (photos, error) in
-            
             DispatchQueue.main.async(execute: {
                 self.collectionView?.reloadData()
             })
             
-            self.photos = photos!
-            NSLog("result \(String(describing: photos)) error ](error)")
+            self.photos = photos!   
         }
     }
     // MARK:- Class Methods
@@ -32,7 +30,9 @@ class FeedCollectionViewController:UICollectionViewController{
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell:CollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
-        cell.setupWithPhoto(url: self.photos[ indexPath.row] as! URL)
+        
+        let photo:PhotoItem = self.photos[ indexPath.row]
+        cell.setupWithPhoto(url: photo.smallImageURL)
         
         return cell;
     }

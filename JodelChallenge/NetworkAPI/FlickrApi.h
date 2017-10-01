@@ -3,11 +3,12 @@
 // Copyright (c) 2017 company. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
+#import <Foundation/Foundation.h>
+@class PhotoItem;
 
 @interface FlickrApi : NSObject
++ (void)fetchPhotosWithCompletion:(void (^)(NSArray<PhotoItem *> *, NSError *))completion ;
 
-+ (void)fetchPhotosWithCompletion:(void (^)(NSArray *, NSError *))completion;
 
 @end

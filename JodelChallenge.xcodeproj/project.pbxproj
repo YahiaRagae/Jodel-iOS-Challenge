@@ -16,6 +16,7 @@
 		3FBCC7651F73AE9200D35147 /* JodelChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBCC7641F73AE9200D35147 /* JodelChallengeUITests.swift */; };
 		847FD6481F80B2EE000A71DC /* FeedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD6471F80B2EE000A71DC /* FeedCollectionViewController.swift */; };
 		847FD64B1F80B75A000A71DC /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD64A1F80B75A000A71DC /* CollectionCell.swift */; };
+		847FD64F1F80BF49000A71DC /* PhotoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD64E1F80BF49000A71DC /* PhotoItem.swift */; };
 		F2325423E4B575E269F946C5 /* Pods_JodelChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0E3425F098B41B8D142748 /* Pods_JodelChallenge.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		725C4F04B15E5272D8D1E3A0 /* Pods-JodelChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JodelChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JodelChallenge/Pods-JodelChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		847FD6471F80B2EE000A71DC /* FeedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewController.swift; sourceTree = "<group>"; };
 		847FD64A1F80B75A000A71DC /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		847FD64E1F80BF49000A71DC /* PhotoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItem.swift; sourceTree = "<group>"; };
 		A7096B2AF22017DBA2B785C4 /* Pods-JodelChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JodelChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-JodelChallenge/Pods-JodelChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 		3FBCC7431F73AE9200D35147 /* JodelChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				847FD64C1F80BB08000A71DC /* Models */,
 				847FD6431F80B2A2000A71DC /* ViewModels */,
 				847FD6411F80B2A2000A71DC /* Views */,
 				3F89F9C91F73AF8A002A3FCB /* NetworkAPI */,
@@ -221,6 +224,22 @@
 				847FD64A1F80B75A000A71DC /* CollectionCell.swift */,
 			);
 			path = CollectionCell;
+			sourceTree = "<group>";
+		};
+		847FD64C1F80BB08000A71DC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				847FD64D1F80BB08000A71DC /* PhotoItem */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		847FD64D1F80BB08000A71DC /* PhotoItem */ = {
+			isa = PBXGroup;
+			children = (
+				847FD64E1F80BF49000A71DC /* PhotoItem.swift */,
+			);
+			path = PhotoItem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				847FD6481F80B2EE000A71DC /* FeedCollectionViewController.swift in Sources */,
+				847FD64F1F80BF49000A71DC /* PhotoItem.swift in Sources */,
 				3FBCC7451F73AE9200D35147 /* AppDelegate.swift in Sources */,
 				3F5224401F73B0C100D7D77A /* FlickrApi.m in Sources */,
 				847FD64B1F80B75A000A71DC /* CollectionCell.swift in Sources */,

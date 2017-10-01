@@ -6,12 +6,14 @@
 #import "FlickrApi.h"
 #import <UIKit/UIKit.h>
 #import <FlickrKit/FlickrKit.h>
+#import "JodelChallenge-Swift.h"
+
 
 @implementation FlickrApi
 
-+ (void)fetchPhotosWithCompletion:(void (^)(NSArray *, NSError *))completion {
++ (void)fetchPhotosWithCompletion:(void (^)(NSArray<PhotoItem *> *, NSError *))completion {
     FlickrKit *fk = [FlickrKit sharedFlickrKit];
-
+    
     [fk initializeWithAPIKey:@"92111faaf0ac50706da05a1df2e85d82" sharedSecret:@"89ded1035d7ceb3a"];
 
     FKFlickrInterestingnessGetList *interesting = [[FKFlickrInterestingnessGetList alloc] init];
@@ -23,8 +25,13 @@
         if (response) {
             photoURLs = [NSMutableArray array];
             for (NSDictionary *photoData in [response valueForKeyPath:@"photos.photo"]) {
-                NSURL *url = [fk photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoData];
-                [photoURLs addObject:url];
+                
+                NSString * title = [photoData valueForKey:@"title"];
+                NSURL *smallURL = [fk photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoData];
+                NSURL *bigURL = [fk photoURLForSize:FKPhotoSizeLarge1024 fromPhotoDictionary:photoData];
+                PhotoItem * item = [[PhotoItem alloc]  initWithTitle:title smallImageURL:smallURL bigImageURL:bigURL];
+                
+                [photoURLs addObject:item];
             }
         }
         if (completion) {

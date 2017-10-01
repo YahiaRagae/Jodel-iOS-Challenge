@@ -12,5 +12,8 @@ class CollectionCell : UICollectionViewCell{
 
     func setupWithPhoto(url:URL){
         self.imageView.setImageWith(url)
+        
+        let imageReauest:URLRequest = URLRequest.init(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
+        self.imageView.setImageWith(imageReauest, placeholderImage: UIImage(), success: nil, failure: nil)
     }
 }

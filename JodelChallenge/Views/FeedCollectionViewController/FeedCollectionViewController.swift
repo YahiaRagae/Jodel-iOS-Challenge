@@ -7,35 +7,31 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+class FeedCollectionViewController:UIViewController{
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var feedCollectionViewModel:FeedCollectionViewModel = FeedCollectionViewModel();
+    private let disposeBag = DisposeBag()
 
-class FeedCollectionViewController:UICollectionViewController{
-    var photos:[PhotoItem] = [PhotoItem]()
+    
     // MARK:- Life Cycle Methods
-
     override func viewDidLoad() {
-        FlickrApi.fetchPhotos { (photos, error) in
-            DispatchQueue.main.async(execute: {
-                self.collectionView?.reloadData()
-            })
-            if photos != nil {
-                self.photos = photos!
-            }            
-        }
+        loadData()
+        bind()
     }
     // MARK:- Class Methods
-    
-    // MARK:- UICollectionViewController DataSource Methods
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.photos.count;
+    func loadData(){
+        feedCollectionViewModel.loadData()
     }
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    private func bind (){
+        feedCollectionViewModel.photos.asObservable().bind(to: (collectionView?.rx.items(cellIdentifier: "CollectionCell", cellType: CollectionCell.self))!){
+            row, photo, cell in
+                cell.setupWithPhoto(url: photo.smallImageURL)
+            }.addDisposableTo(disposeBag)
         
-        let cell:CollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
-        
-        let photo:PhotoItem = self.photos[ indexPath.row]
-        cell.setupWithPhoto(url: photo.smallImageURL)
-        
-        return cell;
     }
     // MARK:- IBAction Methods
     

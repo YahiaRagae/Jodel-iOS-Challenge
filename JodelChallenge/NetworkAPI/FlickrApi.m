@@ -21,9 +21,9 @@
     interesting.page = @"1";
     
     [fk call:interesting completion:^(NSDictionary *response, NSError *error) {
-        NSMutableArray *photoURLs = nil;
+        NSMutableArray *photos = nil;
         if (response) {
-            photoURLs = [NSMutableArray array];
+            photos  = [NSMutableArray array];
             for (NSDictionary *photoData in [response valueForKeyPath:@"photos.photo"]) {
                 
                 NSString * title = [photoData valueForKey:@"title"];
@@ -31,11 +31,11 @@
                 NSURL *bigURL = [fk photoURLForSize:FKPhotoSizeLarge1024 fromPhotoDictionary:photoData];
                 PhotoItem * item = [[PhotoItem alloc]  initWithTitle:title smallImageURL:smallURL bigImageURL:bigURL];
                 
-                [photoURLs addObject:item];
+                [photos addObject:item];
             }
         }
         if (completion) {
-            completion(photoURLs, error);
+            completion(photos, error);
         }
     }];
 }

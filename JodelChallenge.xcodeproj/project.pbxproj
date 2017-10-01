@@ -17,6 +17,7 @@
 		847FD6481F80B2EE000A71DC /* FeedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD6471F80B2EE000A71DC /* FeedCollectionViewController.swift */; };
 		847FD64B1F80B75A000A71DC /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD64A1F80B75A000A71DC /* CollectionCell.swift */; };
 		847FD64F1F80BF49000A71DC /* PhotoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD64E1F80BF49000A71DC /* PhotoItem.swift */; };
+		847FD6521F80C79B000A71DC /* FeedCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FD6511F80C79B000A71DC /* FeedCollectionViewModel.swift */; };
 		F2325423E4B575E269F946C5 /* Pods_JodelChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0E3425F098B41B8D142748 /* Pods_JodelChallenge.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		847FD6471F80B2EE000A71DC /* FeedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewController.swift; sourceTree = "<group>"; };
 		847FD64A1F80B75A000A71DC /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		847FD64E1F80BF49000A71DC /* PhotoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItem.swift; sourceTree = "<group>"; };
+		847FD6511F80C79B000A71DC /* FeedCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewModel.swift; sourceTree = "<group>"; };
 		A7096B2AF22017DBA2B785C4 /* Pods-JodelChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JodelChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-JodelChallenge/Pods-JodelChallenge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,6 +193,7 @@
 		847FD6431F80B2A2000A71DC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				847FD6501F80C794000A71DC /* FeedCollectionViewModel */,
 				847FD6441F80B2A2000A71DC /* CustomViewsModels */,
 			);
 			path = ViewModels;
@@ -240,6 +243,14 @@
 				847FD64E1F80BF49000A71DC /* PhotoItem.swift */,
 			);
 			path = PhotoItem;
+			sourceTree = "<group>";
+		};
+		847FD6501F80C794000A71DC /* FeedCollectionViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				847FD6511F80C79B000A71DC /* FeedCollectionViewModel.swift */,
+			);
+			path = FeedCollectionViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,6 +453,7 @@
 			files = (
 				847FD6481F80B2EE000A71DC /* FeedCollectionViewController.swift in Sources */,
 				847FD64F1F80BF49000A71DC /* PhotoItem.swift in Sources */,
+				847FD6521F80C79B000A71DC /* FeedCollectionViewModel.swift in Sources */,
 				3FBCC7451F73AE9200D35147 /* AppDelegate.swift in Sources */,
 				3F5224401F73B0C100D7D77A /* FlickrApi.m in Sources */,
 				847FD64B1F80B75A000A71DC /* CollectionCell.swift in Sources */,

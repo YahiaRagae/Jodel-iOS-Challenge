@@ -9,16 +9,23 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import JGProgressHUD
 class FeedCollectionViewController:UIViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var feedCollectionViewModel:FeedCollectionViewModel = FeedCollectionViewModel();
+    var feedCollectionViewModel:FeedCollectionViewModel!
     private let disposeBag = DisposeBag()
+
+    var hud:JGProgressHUD!
 
     
     // MARK:- Life Cycle Methods
     override func viewDidLoad() {
+        super.viewDidLoad()
+        //init
+        feedCollectionViewModel  = FeedCollectionViewModel(delegate: self); 
+        
         initViews()
         loadData()
         bind()

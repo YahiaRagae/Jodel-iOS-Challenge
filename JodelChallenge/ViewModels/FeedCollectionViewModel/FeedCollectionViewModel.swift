@@ -8,12 +8,24 @@
 
 import Foundation
 import RxSwift
+
+protocol FeedCollectionViewModelDelegate: NSObjectProtocol {
+    func showLoading(msg:String)
+    func hideLoading()
+}
+
 class FeedCollectionViewModel: NSObject{
     var photos:Variable<[PhotoItem]> =  Variable<[PhotoItem]>([])
     private var pageIndex:NSNumber = 0 ;
     
+    weak  var delegate:FeedCollectionViewModelDelegate!
+
+    init(delegate:FeedCollectionViewModelDelegate) {    
+        self.delegate = delegate
+    }
     // MARK:- Actions
     func loadData(){
+        self.delegate.showLoading(msg: "Loading Images...")
         pageIndex = NSNumber(value: pageIndex.intValue + 1)
         
         FlickrApi.fetchPhotos(withPageIndex: pageIndex){(newPhotos, error) in
@@ -23,6 +35,7 @@ class FeedCollectionViewModel: NSObject{
                     for photo in newPhotos!{
                         self.photos.value.append(  photo)
                     }
+                    self.delegate.hideLoading()
                 }
                 )
             }

@@ -11,7 +11,8 @@ class CollectionCell : UICollectionViewCell{
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var viewLabelBg: UIView!
- 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     
     func setupWithPhoto(photo:PhotoItem){
         showImage(url:photo.smallImageURL)
@@ -19,9 +20,13 @@ class CollectionCell : UICollectionViewCell{
     }
     func showImage(url:URL){
         let imageReauest:URLRequest = URLRequest.init(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
-        self.imageView.setImageWith(imageReauest, placeholderImage: UIImage(), success: nil, failure: nil)
+        self.imageView.setImageWith(imageReauest, placeholderImage: UIImage(), success:  { (reuqest, response, image) in
+            self.activityIndicator.stopAnimating()
+            self.imageView.image = image
+            self.imageView.layer.contentsRect = CGRect(x:  0.2, y: 0.2, width: 0.7, height: 0.7)
+        }, failure: nil)
         
-        self.imageView.layer.contentsRect = CGRect(x:  0.25, y: 0.25, width: 0.5, height: 0.5)
+        
     }
     func showTitle(title:String){
         lblTitle.text = title

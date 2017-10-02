@@ -67,19 +67,27 @@
                                                         <constraint firstAttribute="height" constant="64" id="pLe-Cm-bg4"/>
                                                     </constraints>
                                                 </view>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dnb-W0-sbu">
+                                                    <rect key="frame" x="177" y="115" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="dnb-W0-sbu" firstAttribute="leading" secondItem="KSb-mb-cvf" secondAttribute="leading" constant="177" id="EeM-h8-wah"/>
                                             <constraint firstItem="m6O-ch-H2N" firstAttribute="top" secondItem="KSb-mb-cvf" secondAttribute="top" id="GyH-j4-Qnv"/>
+                                            <constraint firstAttribute="bottom" secondItem="dnb-W0-sbu" secondAttribute="bottom" constant="115" id="MNC-mK-Zh3"/>
+                                            <constraint firstItem="dnb-W0-sbu" firstAttribute="top" secondItem="KSb-mb-cvf" secondAttribute="top" constant="115" id="P6Z-3R-teT"/>
                                             <constraint firstAttribute="bottom" secondItem="m6O-ch-H2N" secondAttribute="bottom" id="WaW-Qc-Ze3"/>
                                             <constraint firstAttribute="trailing" secondItem="m6O-ch-H2N" secondAttribute="trailing" id="X80-nM-paI"/>
                                             <constraint firstAttribute="bottom" secondItem="WGL-iz-OG1" secondAttribute="bottom" id="YVy-4K-aeF"/>
                                             <constraint firstAttribute="trailing" secondItem="WGL-iz-OG1" secondAttribute="trailing" id="eyy-h0-lvm"/>
                                             <constraint firstItem="m6O-ch-H2N" firstAttribute="leading" secondItem="KSb-mb-cvf" secondAttribute="leading" id="ioO-rf-pfV"/>
                                             <constraint firstItem="WGL-iz-OG1" firstAttribute="leading" secondItem="KSb-mb-cvf" secondAttribute="leading" id="vgH-Fc-Ynq"/>
+                                            <constraint firstAttribute="trailing" secondItem="dnb-W0-sbu" secondAttribute="trailing" constant="178" id="waj-XI-SiJ"/>
                                         </constraints>
                                         <size key="customSize" width="375" height="250"/>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="dnb-W0-sbu" id="EDy-By-s0x"/>
                                             <outlet property="imageView" destination="m6O-ch-H2N" id="AnS-Qn-fmP"/>
                                             <outlet property="lblTitle" destination="eVG-hw-JVp" id="JzO-4L-oAc"/>
                                             <outlet property="viewLabelBg" destination="WGL-iz-OG1" id="4Ae-2l-2iD"/>

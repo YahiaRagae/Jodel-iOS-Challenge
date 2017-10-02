@@ -32,22 +32,22 @@ class FeedCollectionViewModel: NSObject{
             pageIndex = NSNumber(value: pageIndex.intValue + 1)
             
             FlickrApi.fetchPhotos(withPageIndex: pageIndex){(newPhotos, error) in
-                
-                if newPhotos != nil {
-                    DispatchQueue.main.async(execute: {
+                DispatchQueue.main.async(execute: {
+                    if newPhotos != nil {
+                        
                         for photo in newPhotos!{
                             self.photos.value.append(  photo)
                         }
                         if(newPhotos?.count == 0){
                             self.isLoadMoreEnabled = false
                         }
-                        self.delegate.hideLoading()
+                        
                         
                     }
-                    )
                     
+                    self.delegate.hideLoading()
                     self.isLoadingStatus = false
-                }
+                })
             }
         }
     }

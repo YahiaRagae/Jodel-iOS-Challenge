@@ -7,5 +7,5 @@ target 'JodelChallenge' do
   pod ‘RxSwift’,'~> 4.0.0-beta.0'
   pod ‘RxCocoa’,'~> 4.0.0-beta.0'
   
-  pod 'JGProgressHUD'
+  pod 'JGProgressHUD', '1.4'
 end

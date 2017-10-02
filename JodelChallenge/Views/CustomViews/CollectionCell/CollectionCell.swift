@@ -20,6 +20,7 @@ class CollectionCell : UICollectionViewCell{
     }
     func showImage(url:URL){
         let imageReauest:URLRequest = URLRequest.init(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
+        self.activityIndicator.startAnimating()
         self.imageView.setImageWith(imageReauest, placeholderImage: UIImage(), success:  { (reuqest, response, image) in
             self.activityIndicator.stopAnimating()
             self.imageView.image = image

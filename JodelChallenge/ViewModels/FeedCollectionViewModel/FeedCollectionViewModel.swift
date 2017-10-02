@@ -17,7 +17,8 @@ protocol FeedCollectionViewModelDelegate: NSObjectProtocol {
 class FeedCollectionViewModel: NSObject{
     var photos:Variable<[PhotoItem]> =  Variable<[PhotoItem]>([])
     private var pageIndex:NSNumber = 0 ;
-    
+    private var isLoadingStatus:Bool = false
+    private var isLoadMoreEnabled:Bool = true
     weak  var delegate:FeedCollectionViewModelDelegate!
 
     init(delegate:FeedCollectionViewModelDelegate) {    
@@ -25,23 +26,39 @@ class FeedCollectionViewModel: NSObject{
     }
     // MARK:- Actions
     func loadData(){
-        self.delegate.showLoading(msg: "Loading Images...")
-        pageIndex = NSNumber(value: pageIndex.intValue + 1)
-        
-        FlickrApi.fetchPhotos(withPageIndex: pageIndex){(newPhotos, error) in
+        if(!isLoadingStatus && isLoadMoreEnabled){
+            isLoadingStatus = true
+            self.delegate.showLoading(msg: "Loading Images...")
+            pageIndex = NSNumber(value: pageIndex.intValue + 1)
             
-            if newPhotos != nil {
-                DispatchQueue.main.async(execute: {
-                    for photo in newPhotos!{
-                        self.photos.value.append(  photo)
+            FlickrApi.fetchPhotos(withPageIndex: pageIndex){(newPhotos, error) in
+                
+                if newPhotos != nil {
+                    DispatchQueue.main.async(execute: {
+                        for photo in newPhotos!{
+                            self.photos.value.append(  photo)
+                        }
+                        if(newPhotos?.count == 0){
+                            self.isLoadMoreEnabled = false
+                        }
+                        self.delegate.hideLoading()
+                        
                     }
-                    self.delegate.hideLoading()
+                    )
+                    
+                    self.isLoadingStatus = false
                 }
-                )
             }
         }
     }
     // MARK:- Getters
-    
+    func refreshPhotos(){
+        pageIndex = 0
+        isLoadMoreEnabled = true
+        loadData()
+    }
+    func getPhotosCount()->Int{
+        return photos.value.count
+    }
 }
 

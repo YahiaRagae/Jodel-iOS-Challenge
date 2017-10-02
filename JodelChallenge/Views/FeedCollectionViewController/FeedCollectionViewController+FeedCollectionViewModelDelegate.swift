@@ -25,5 +25,6 @@ extension FeedCollectionViewController : FeedCollectionViewModelDelegate{
             hud.dismiss()
         }
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        refreshControl.endRefreshing()
     }
 }

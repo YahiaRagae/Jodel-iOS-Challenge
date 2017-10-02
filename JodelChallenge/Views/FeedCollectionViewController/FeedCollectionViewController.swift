@@ -10,13 +10,15 @@ import Foundation
 import RxSwift
 import RxCocoa
 import JGProgressHUD
+
 class FeedCollectionViewController:UIViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     var feedCollectionViewModel:FeedCollectionViewModel!
     private let disposeBag = DisposeBag()
-
+    var refreshControl :UIRefreshControl = UIRefreshControl()
+    
     var hud:JGProgressHUD!
 
     
@@ -32,13 +34,31 @@ class FeedCollectionViewController:UIViewController{
     }
     // MARK:- Class Methods
     func initViews(){
-        //init Collection View layout
+        initCollectionView()
+        initLoadMoreView()
+        
+    }
+    
+    func initCollectionView(){
+        //init pull to resfresh
+        collectionView.refreshControl =  refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshPhotos), for: .valueChanged)
+
+        //init Layout Flow
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let itemWidth = view.bounds.width 
+            let itemWidth = view.bounds.width
             let itemHeight = layout.itemSize.height
             layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
             layout.invalidateLayout()
         }
+    }
+    
+    func initLoadMoreView(){
+        collectionView.rx.willDisplayCell.subscribe(onNext: { (cell, indexPath) in
+            if(indexPath.row == self.feedCollectionViewModel.getPhotosCount()-1){
+                self.loadData()
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     func loadData(){
@@ -50,7 +70,10 @@ class FeedCollectionViewController:UIViewController{
             cell.setupWithPhoto(photo: photo)
             }.addDisposableTo(disposeBag)
         
+       
     }
     // MARK:- IBAction Methods
-    
+    @objc func refreshPhotos(){
+        feedCollectionViewModel.refreshPhotos()
+    }
 }

@@ -10,8 +10,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 import JGProgressHUD
-
-class FeedCollectionViewController:UIViewController{
+import AXPhotoViewer
+class FeedCollectionViewController:UIViewController,UICollectionViewDelegate{
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -20,13 +20,13 @@ class FeedCollectionViewController:UIViewController{
     var refreshControl :UIRefreshControl = UIRefreshControl()
     
     var hud:JGProgressHUD!
-
+    
     
     // MARK:- Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         //init
-        feedCollectionViewModel  = FeedCollectionViewModel(delegate: self); 
+        feedCollectionViewModel  = FeedCollectionViewModel(delegate: self);
         
         initViews()
         loadData()
@@ -43,7 +43,7 @@ class FeedCollectionViewController:UIViewController{
         //init pull to resfresh
         collectionView.refreshControl =  refreshControl
         refreshControl.addTarget(self, action: #selector(refreshPhotos), for: .valueChanged)
-
+        
         //init Layout Flow
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let itemWidth = view.bounds.width
@@ -70,7 +70,35 @@ class FeedCollectionViewController:UIViewController{
             cell.setupWithPhoto(photo: photo)
             }.addDisposableTo(disposeBag)
         
-       
+        
+    }
+    func showImagePreview(indexPath:IndexPath){
+        let dataSource = feedCollectionViewModel.getPhotoPreviewDataSource(selectedIndex:indexPath.row)
+        let pagingConfig:PagingConfig = PagingConfig(interPhotoSpacing: 2)
+        let currentCell:CollectionCell = collectionView.cellForItem(at: indexPath) as! CollectionCell
+        
+        let transitionInfo = TransitionInfo(interactiveDismissalEnabled: true, startingView: currentCell.imageView) { [weak self] (photo, index) -> UIImageView? in
+            guard let uSelf = self else {
+                return nil
+            }
+            
+            let indexPath = IndexPath(row: index, section: 0)
+            guard let cell = uSelf.collectionView.cellForItem(at: indexPath) else {
+                return nil
+            }
+            
+            // adjusting the reference view attached to our transition info to allow for contextual animation
+            return cell.contentView.viewWithTag(666) as? FLAnimatedImageView
+        }
+        
+        
+        let photosViewController = PhotosViewController(dataSource: dataSource, pagingConfig: pagingConfig, transitionInfo: transitionInfo)
+        
+        self.present(photosViewController, animated: true)
+    }
+    // MARK:- UICollectionViewDelegate Methods
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        showImagePreview(indexPath:indexPath)
     }
     
     // MARK:- IBAction Methods
@@ -89,3 +117,4 @@ class FeedCollectionViewController:UIViewController{
         showAlert(title:"⚠️Alert⚠️", msg:"Hard Alert")
     }
 }
+

@@ -12,6 +12,9 @@ import Foundation
     var smallImageURL:URL
     var bigImageURL:URL
     
+    var bigImageData:Data!
+    var bigImage:UIImage!
+    
     @objc init(title:String , smallImageURL:URL , bigImageURL:URL) {
         self.title  = title
         self.smallImageURL  = smallImageURL

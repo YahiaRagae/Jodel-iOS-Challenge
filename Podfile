@@ -8,4 +8,6 @@ target 'JodelChallenge' do
   pod ‘RxCocoa’,'~> 4.0.0-beta.0'
   
   pod 'JGProgressHUD', '1.4'
+  pod 'AXPhotoViewer/AFNetworking'
+  
 end

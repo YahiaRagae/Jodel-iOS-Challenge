@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import AXPhotoViewer
 
 protocol FeedCollectionViewModelDelegate: NSObjectProtocol {
     func showLoading(msg:String)
@@ -64,6 +65,9 @@ class FeedCollectionViewModel: NSObject{
     }
     func getPhotosCount()->Int{
         return photos.value.count
+    }
+    func getPhotoPreviewDataSource(selectedIndex:Int)->PhotosDataSource{
+        return PhotosDataSource(photos: photos.value, initialPhotoIndex: selectedIndex, prefetchBehavior: .conservative)
     }
 }
 

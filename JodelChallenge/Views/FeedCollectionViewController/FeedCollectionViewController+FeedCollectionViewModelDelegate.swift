@@ -27,4 +27,12 @@ extension FeedCollectionViewController : FeedCollectionViewModelDelegate{
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         refreshControl.endRefreshing()
     }
+    func showAlert(title:String, msg:String){
+        let alert : UIAlertController = UIAlertController.init(title: title, message: msg, preferredStyle: .alert)
+        let dismissAlertAction = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
+        
+        alert.addAction(dismissAlertAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }

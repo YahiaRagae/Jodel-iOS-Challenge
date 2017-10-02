@@ -12,6 +12,7 @@ import RxSwift
 protocol FeedCollectionViewModelDelegate: NSObjectProtocol {
     func showLoading(msg:String)
     func hideLoading()
+    func showAlert(title:String, msg:String)
 }
 
 class FeedCollectionViewModel: NSObject{
@@ -47,6 +48,10 @@ class FeedCollectionViewModel: NSObject{
                     
                     self.delegate.hideLoading()
                     self.isLoadingStatus = false
+                    
+                    if(error != nil ){
+                        self.delegate.showAlert(title: "Error", msg: (error?.localizedDescription)!)
+                    }
                 })
             }
         }

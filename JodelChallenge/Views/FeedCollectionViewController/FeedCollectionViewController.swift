@@ -72,6 +72,7 @@ class FeedCollectionViewController:UIViewController{
         
        
     }
+    
     // MARK:- IBAction Methods
     @objc func refreshPhotos(){
         feedCollectionViewModel.refreshPhotos()
@@ -85,12 +86,6 @@ class FeedCollectionViewController:UIViewController{
         toast?.dismiss(afterDelay: 0.8)
     }
     @IBAction func showHardAlert(_ sender: Any) {
-        let alert : UIAlertController = UIAlertController.init(title: "⚠️Alert⚠️", message: "Hard Alert", preferredStyle: .alert)
-        let dismissAlertAction = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
-        
-        alert.addAction(dismissAlertAction)
-        
-        self.present(alert, animated: true, completion: nil)
-        
+        showAlert(title:"⚠️Alert⚠️", msg:"Hard Alert")
     }
 }

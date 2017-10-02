@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Feed Collection View Controller-->
+        <!--Photos-->
         <scene sceneID="cN9-MC-PgN">
             <objects>
-                <viewController id="kvY-Hi-bUD" customClass="FeedCollectionViewController" customModule="JodelChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Photos" id="kvY-Hi-bUD" customClass="FeedCollectionViewController" customModule="JodelChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4tM-2M-baQ"/>
                         <viewControllerLayoutGuide type="bottom" id="k4L-9I-EbL"/>
@@ -98,7 +98,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="MIb-WO-E3l"/>
+                    <navigationItem key="navigationItem" title="Photos" id="MIb-WO-E3l">
+                        <barButtonItem key="leftBarButtonItem" title="Soft Alert" id="06k-GI-ckj">
+                            <connections>
+                                <action selector="showSoftAlert:" destination="kvY-Hi-bUD" id="0Sy-VM-t3Z"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Hard Alert" id="Q45-Xa-5lV">
+                            <connections>
+                                <action selector="showHardAlert:" destination="kvY-Hi-bUD" id="f3q-lM-Wlr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="9n2-3r-sSJ" id="Zp6-wO-dLx"/>
                     </connections>

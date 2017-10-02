@@ -76,4 +76,21 @@ class FeedCollectionViewController:UIViewController{
     @objc func refreshPhotos(){
         feedCollectionViewModel.refreshPhotos()
     }
+    @IBAction func showSoftAlert(_ sender: Any) {
+        let toast =  JGProgressHUD(style: .light)
+        toast?.indicatorView = nil
+        toast?.position = JGProgressHUDPosition.bottomCenter
+        toast?.textLabel.text = "Hint Sample"
+        toast?.show(in: view)
+        toast?.dismiss(afterDelay: 0.8)
+    }
+    @IBAction func showHardAlert(_ sender: Any) {
+        let alert : UIAlertController = UIAlertController.init(title: "⚠️Alert⚠️", message: "Hard Alert", preferredStyle: .alert)
+        let dismissAlertAction = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
+        
+        alert.addAction(dismissAlertAction)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
 }

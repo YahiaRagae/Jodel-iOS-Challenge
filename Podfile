@@ -9,5 +9,9 @@ target 'JodelChallenge' do
   
   pod 'JGProgressHUD', '1.4'
   pod 'AXPhotoViewer/AFNetworking'
+
+  target 'JodelChallengeTests' do	
+  	pod ‘RxSwift’,'~> 4.0.0-beta.0'
+  end
   
 end

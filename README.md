@@ -1,21 +1,15 @@
 <p align="center">
 <img src="jodellogo.png" width="300">
-</p>
-
 
 # Jodel Challenge - iOS
 
-
-
-
-<p align="center">
 <div style="text-align:center"> <img   src="https://github.com/YahiaRagae/Jodel-iOS-Challenge/blob/master/img.gif" width="320"></div>
+
+
 </p>
-
-
-
+ 
 ## Platforms ##
--  >= 11  .
+-  > = 11  .
 
 
 

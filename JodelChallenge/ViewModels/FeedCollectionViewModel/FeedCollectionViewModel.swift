@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import AXPhotoViewer
 
-protocol FeedCollectionViewModelDelegate: NSObjectProtocol {
+protocol FeedCollectionViewModelDelegate: class {
     func showLoading(msg:String)
     func hideLoading()
     func showAlert(title:String, msg:String)
@@ -34,6 +34,7 @@ class FeedCollectionViewModel: NSObject{
             pageIndex = NSNumber(value: pageIndex.intValue + 1)
             
             FlickrApi.fetchPhotos(withPageIndex: pageIndex){(newPhotos, error) in
+                
                 DispatchQueue.main.async(execute: {
                     if newPhotos != nil {
                         
